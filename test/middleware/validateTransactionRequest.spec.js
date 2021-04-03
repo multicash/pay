@@ -17,7 +17,7 @@ describe('Transaction request middleware validates', () => {
 
     validateTransactionRequestMiddleware(context)
 
-    expect(context.route.meta.validatedData).toEqual({
+    expect(context.route.query).toEqual({
       address: 'MskAT35r9sE2mmS5Ksg9U4egwRsHKqdAoxz',
       amount: 123,
       label: 'hello world',
@@ -42,7 +42,7 @@ describe('Transaction request middleware validates', () => {
 
     validateTransactionRequestMiddleware(context)
 
-    expect(context.route.meta.validatedData.amount).toBe(123.54455343)
+    expect(context.route.query.amount).toBe(123.54455343)
     expect(context.redirect).not.toHaveBeenCalled()
   })
 
