@@ -15,10 +15,65 @@ export default {
         hid: 'description',
         name: 'description',
         content:
-          'Pay MultiCash easily by scanning the QR code with your MultiCash mobile app.',
+          'Easily pay each other MultiCash by scanning the QR code with your MultiCash mobile app.',
+      },
+
+      // Open Graph / Facebook
+      { name: 'og:type', content: 'website' },
+      { name: 'og:url', content: 'https://pay.multicash.io' },
+      { name: 'og:title', content: 'MultiCash Pay' },
+      {
+        name: 'og:description',
+        content:
+          'Easily pay each other MultiCash by scanning the QR code with your MultiCash mobile app.',
+      },
+      { name: 'og:image', content: '/social-banner.png' },
+      { name: 'theme-color', content: '#F744E4' },
+
+      // Twitter
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:url', content: 'https://pay.multicash.io' },
+      { name: 'twitter:title', content: 'MultiCash Pay' },
+      {
+        name: 'twitter:description',
+        content:
+          'Easily pay each other MultiCash by scanning the QR code with your MultiCash mobile app.',
+      },
+      { name: 'twitter:image', content: '/social-banner.png' },
+    ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '192x192',
+        href: '/android-chrome-192x192.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '512x512',
+        href: '/android-chrome-512x512.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png',
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png',
+      },
+      {
+        rel: 'apple-touch-icon',
+        type: 'image/png',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
