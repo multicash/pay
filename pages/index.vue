@@ -24,7 +24,7 @@
         </div>
         <div class="qr-details">
           <vue-qrcode
-            :value="address"
+            :value="qrValue"
             :options="{
               width: 200,
             }"
@@ -41,6 +41,7 @@ import Vue from 'vue'
 import VueQrcode from '@chenfengyuan/vue-qrcode'
 
 interface Data {
+  id: string
   address: string
   tag: string
   amount: string
@@ -56,6 +57,7 @@ export default Vue.extend({
 
   data(): Data {
     return {
+      id: '',
       address: '',
       tag: '',
       amount: '',
@@ -64,11 +66,14 @@ export default Vue.extend({
 
   computed: {
     qrValue(): string {
-      return this.address
+      return `https://pay.multicash.io/?${new URLSearchParams(
+        this.$route.query as any
+      ).toString()}`
     },
   },
 
-  mounted(): void {
+  created(): void {
+    this.id = this.$route.query.id as string
     this.address = this.$route.query.address as string
     this.tag = this.$route.query.tag as string
     this.amount = this.$route.query.amount as string
@@ -83,7 +88,7 @@ export default Vue.extend({
 }
 
 .details {
-  @apply p-6 md:p-8 bg-white dark:bg-gray-800;
+  @apply p-4 md:p-8 bg-white dark:bg-gray-800;
 }
 
 .image {
@@ -103,15 +108,15 @@ export default Vue.extend({
 }
 
 .address {
-  @apply text-xs md:text-base font-medium text-gray-400 dark:text-gray-500 truncate;
+  @apply -mt-0.5 leading-5 text-xs md:text-base font-medium text-gray-400 dark:text-gray-500 truncate;
 }
 
 .amount {
-  @apply py-2 leading-none tracking-tight;
+  @apply py-1 md:py-2 leading-none tracking-tight;
 }
 
 .amount .value {
-  @apply text-3xl md:text-6xl text-gray-800 dark:text-gray-200 font-extrabold;
+  @apply text-4xl md:text-6xl text-gray-800 dark:text-gray-200 font-extrabold;
 }
 
 .amount .currency {

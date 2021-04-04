@@ -3,6 +3,8 @@ import { Context } from '@nuxt/types/app'
 const Joi = require('joi')
 
 const schema = Joi.object({
+  id: Joi.string().uuid().required(),
+
   address: Joi.string()
     .required()
     .regex(/^[a-zA-Z0-9]{35}$/),
