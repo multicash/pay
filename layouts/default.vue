@@ -77,10 +77,10 @@ p {
 }
 
 .menu-links li a {
-  @apply p-4 flex items-center justify-center text-lg font-medium text-white hover:bg-white hover:bg-opacity-10 cursor-pointer;
+  @apply p-3 pt-4 md:p-4 flex items-center justify-center md:text-lg font-medium text-white hover:bg-white hover:bg-opacity-10 cursor-pointer;
 }
 
 .footer {
-  @apply py-4 flex items-end justify-center text-white text-sm;
+  @apply py-2 md:py-4 flex items-end justify-center text-white text-sm;
 }
 </style>
