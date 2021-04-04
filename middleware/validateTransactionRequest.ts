@@ -5,8 +5,7 @@ const Joi = require('joi')
 const schema = Joi.object({
   address: Joi.string()
     .required()
-    // eslint-disable-next-line prefer-regex-literals
-    .regex(RegExp(/^[a-zA-Z0-9]{35}$/)),
+    .regex(/^[a-zA-Z0-9]{35}$/),
 
   tag: Joi.string()
     .min(4)

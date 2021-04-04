@@ -23,62 +23,18 @@
           </div>
         </div>
         <div class="qr-details">
-          <vue-qrcode :value="address" :options="{ width: 200 }" class="qr" />
+          <vue-qrcode
+            :value="address"
+            :options="{
+              width: 200,
+            }"
+            class="qr"
+          />
         </div>
       </div>
     </div>
   </Container>
 </template>
-
-<style scoped>
-.pay-link-panel {
-  @apply w-1/2 max-w-lg rounded-2xl overflow-hidden shadow-2xl text-gray-800 text-center;
-}
-
-.details {
-  @apply p-8 bg-white;
-}
-
-.image {
-  @apply flex justify-center mb-2;
-}
-
-.image svg {
-  @apply w-auto h-16 fill-current text-gray-300;
-}
-
-.tag {
-  @apply text-4xl font-extrabold leading-none tracking-tight;
-}
-
-.tag span {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500;
-}
-
-.amount {
-  @apply py-2 leading-none tracking-tight;
-}
-
-.amount .value {
-  @apply text-6xl text-gray-800 font-extrabold;
-}
-
-.amount .currency {
-  @apply text-4xl text-gray-600 font-black;
-}
-
-.address {
-  @apply font-medium text-gray-400 truncate;
-}
-
-.qr-details {
-  @apply p-8 bg-gradient-to-br from-gray-100 to-gray-300 flex justify-center;
-}
-
-.qr {
-  @apply rounded-xl;
-}
-</style>
 
 <script lang="ts">
 import Vue from 'vue'
@@ -120,3 +76,53 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style scoped>
+.pay-link-panel {
+  @apply w-full md:w-1/2 max-w-lg rounded-2xl overflow-hidden shadow-2xl text-gray-800 text-center;
+}
+
+.details {
+  @apply p-6 md:p-8 bg-white dark:bg-gray-800;
+}
+
+.image {
+  @apply flex justify-center mb-2;
+}
+
+.image svg {
+  @apply w-auto h-0 md:h-16 fill-current text-gray-300 dark:text-gray-500;
+}
+
+.tag {
+  @apply text-2xl md:text-4xl font-extrabold leading-none tracking-tight;
+}
+
+.tag span {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500;
+}
+
+.address {
+  @apply text-xs md:text-base font-medium text-gray-400 dark:text-gray-500 truncate;
+}
+
+.amount {
+  @apply py-2 leading-none tracking-tight;
+}
+
+.amount .value {
+  @apply text-3xl md:text-6xl text-gray-800 dark:text-gray-200 font-extrabold;
+}
+
+.amount .currency {
+  @apply text-xl md:text-4xl text-gray-600 dark:text-gray-500 font-black;
+}
+
+.qr-details {
+  @apply p-4 md:p-8 bg-gradient-to-br from-gray-100 to-gray-300 flex dark:from-gray-700 dark:to-gray-800 flex justify-center;
+}
+
+.qr {
+  @apply rounded-xl;
+}
+</style>

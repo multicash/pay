@@ -1,15 +1,21 @@
 <template>
-  <div class="bg-colors h-screen flex flex-col">
+  <div class="layout">
     <Block>
-      <Container class="flex items-center">
-        <Logo class="w-auto h-7 sm:h-8" flat inverted />
-        <h1 class="font-extrabold text-6xl text-white ml-0 italic">Pay</h1>
+      <Container class="header">
+        <div class="logo-container">
+          <Logo class="logo" flat inverted />
+          <h1 class="logo-pay">Pay</h1>
+        </div>
+        <div>
+          <ul class="menu-links">
+            <li><a>Help me</a></li>
+            <li><a>Get Started with MultiCash</a></li>
+          </ul>
+        </div>
       </Container>
     </Block>
     <Nuxt class="flex-1" />
-    <div class="py-4 flex items-end justify-center text-white text-sm">
-      © 2021 MultiCash. All Rights Reserved
-    </div>
+    <div class="footer">© 2021 MultiCash. All Rights Reserved</div>
   </div>
 </template>
 
@@ -20,7 +26,19 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  @apply bg-white dark:bg-gray-900 text-black dark:text-white;
+  @apply min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white;
+}
+
+body {
+  @apply min-h-screen;
+}
+
+#__nuxt {
+  @apply min-h-screen;
+}
+
+#__layout {
+  @apply min-h-screen;
 }
 
 *,
@@ -32,5 +50,37 @@ html {
 
 p {
   @apply my-4;
+}
+
+.layout {
+  @apply min-h-screen bg-colors flex flex-col;
+}
+
+.header {
+  @apply flex justify-center md:justify-between items-center flex-col md:flex-row;
+}
+
+.logo-container {
+  @apply flex items-center;
+}
+
+.logo {
+  @apply w-auto h-5 md:h-8;
+}
+
+.logo-pay {
+  @apply font-extrabold text-4xl md:text-6xl text-white ml-0 italic;
+}
+
+.menu-links {
+  @apply flex justify-end align-middle;
+}
+
+.menu-links li a {
+  @apply p-4 flex items-center justify-center text-lg font-medium text-white hover:bg-white hover:bg-opacity-10 cursor-pointer;
+}
+
+.footer {
+  @apply py-4 flex items-end justify-center text-white text-sm;
 }
 </style>
