@@ -6,6 +6,7 @@ describe('Transaction request middleware validates', () => {
       redirect: jest.fn(),
       route: {
         query: {
+          id: 'd2641f65-9079-4101-93a3-ce45f438afb4',
           address: 'MskAT35r9sE2mmS5Ksg9U4egwRsHKqdAoxz',
           amount: '123',
           tag: '@myTag',
@@ -18,6 +19,7 @@ describe('Transaction request middleware validates', () => {
     validateTransactionRequestMiddleware(context)
 
     expect(context.route.query).toEqual({
+      id: 'd2641f65-9079-4101-93a3-ce45f438afb4',
       address: 'MskAT35r9sE2mmS5Ksg9U4egwRsHKqdAoxz',
       amount: 123,
       label: 'hello world',
@@ -31,6 +33,7 @@ describe('Transaction request middleware validates', () => {
       redirect: jest.fn(),
       route: {
         query: {
+          id: 'd2641f65-9079-4101-93a3-ce45f438afb4',
           address: 'MskAT35r9sE2mmS5Ksg9U4egwRsHKqdAoxz',
           amount: '123.544553434',
           tag: '@myTag',
@@ -51,6 +54,7 @@ describe('Transaction request middleware validates', () => {
       redirect: jest.fn(),
       route: {
         query: {
+          id: 'd2641f65-9079-4101-93a3-ce45f438afb4',
           address: 'MskAT35r9sE2mmS5Ksg9U4egwRsHKqdAoxz',
           amount: 'MCX 123.544553434',
           tag: '@myTag',
@@ -70,6 +74,7 @@ describe('Transaction request middleware validates', () => {
       redirect: jest.fn(),
       route: {
         query: {
+          id: 'd2641f65-9079-4101-93a3-ce45f438afb4',
           address: 'MskAT35r9sE2mmS5Ksg9U4egwRsHKqdAoxz',
           amount: '123,544553434',
           tag: '@myTag',
@@ -89,6 +94,7 @@ describe('Transaction request middleware validates', () => {
       redirect: jest.fn(),
       route: {
         query: {
+          id: 'd2641f65-9079-4101-93a3-ce45f438afb4',
           address: 'MskAT35r9sE2mmS5Ksg9U4egwRsHKqdAoxz',
           amount: '123',
           tag: '@my-Tag',
@@ -108,6 +114,7 @@ describe('Transaction request middleware validates', () => {
       redirect: jest.fn(),
       route: {
         query: {
+          id: 'd2641f65-9079-4101-93a3-ce45f438afb4',
           address: 'MskAT35r9sE2mm-5Ksg9U4egwRsHKqdAoxz',
           amount: '123',
           tag: '@myTag',
@@ -127,6 +134,7 @@ describe('Transaction request middleware validates', () => {
       redirect: jest.fn(),
       route: {
         query: {
+          id: 'd2641f65-9079-4101-93a3-ce45f438afb4',
           address: 'MskAT35r9sE2mmD5Ksg9U4egwRsHKqdAoxz',
           amount: '123',
           tag: '@myTag',
@@ -143,6 +151,46 @@ describe('Transaction request middleware validates', () => {
   })
 
   test('Invalid label because its too short', () => {
+    const context = {
+      redirect: jest.fn(),
+      route: {
+        query: {
+          id: 'd2641f65-9079-4101-93a3-ce45f438afb4',
+          address: 'MskAT35r9sE2mmD5Ksg9U4egwRsHKqdAoxz',
+          amount: '123',
+          tag: '@myTag',
+          label: '',
+        },
+        meta: {},
+      },
+    }
+
+    validateTransactionRequestMiddleware(context)
+
+    expect(context.redirect).toHaveBeenCalled()
+  })
+
+  test('Invalid id because its not a UUID', () => {
+    const context = {
+      redirect: jest.fn(),
+      route: {
+        query: {
+          id: 'naja',
+          address: 'MskAT35r9sE2mmD5Ksg9U4egwRsHKqdAoxz',
+          amount: '123',
+          tag: '@myTag',
+          label: '',
+        },
+        meta: {},
+      },
+    }
+
+    validateTransactionRequestMiddleware(context)
+
+    expect(context.redirect).toHaveBeenCalled()
+  })
+
+  test('Invalid id because its missing', () => {
     const context = {
       redirect: jest.fn(),
       route: {
