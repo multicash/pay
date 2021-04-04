@@ -66,9 +66,13 @@ export default Vue.extend({
 
   computed: {
     qrValue(): string {
-      return `https://pay.multicash.io/?${new URLSearchParams(
-        this.$route.query as any
-      ).toString()}`
+      let url = `https://pay.multicash.io/?id=${this.$route.query.id}&address=${this.$route.query.address}&tag=${this.$route.query.tag}&amount=${this.$route.query.amount}`
+
+      if (this.$route.query.label !== '' && this.$route.query.label !== null) {
+        url += '&label=' + this.$route.query.label
+      }
+
+      return encodeURI(url)
     },
   },
 
