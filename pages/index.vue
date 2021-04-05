@@ -87,11 +87,7 @@ export default Vue.extend({
     },
 
     valueSize(): string {
-      if (!this.amount) {
-        return ''
-      }
-
-      const value = this.amount.split('.')[0].length
+      const value = String(parseInt(this.amount)).length
 
       switch (true) {
         case value < 4:
