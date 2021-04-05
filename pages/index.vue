@@ -13,22 +13,32 @@
               />
             </svg>
           </div>
+          <div class="title">Pay</div>
           <div class="tag">
             <span>{{ tag }}</span>
           </div>
           <p class="address">{{ address }}</p>
+          <div class="title">Amount</div>
           <div class="amount">
-            <span class="value">{{ amount }}</span>
+            <span class="value" :class="valueSize">{{ formattedAmount }}</span>
             <span class="currency">MCX</span>
           </div>
+          <template v-if="label">
+            <div class="title">Label</div>
+            <div class="label">
+              <span>{{ label }}</span>
+            </div>
+          </template>
         </div>
         <div class="qr-details">
           <vue-qrcode
             :value="qrValue"
             :options="{
               width: 200,
+              height: 200,
             }"
             class="qr"
+            tag="svg"
           />
         </div>
       </div>
@@ -65,6 +75,36 @@ export default Vue.extend({
   },
 
   computed: {
+    formattedAmount(): string {
+      const amount = Number(this.amount)
+
+      return new Intl.NumberFormat('en-EN', {
+        style: 'currency',
+        currency: 'MCX',
+      })
+        .format(amount)
+        .replace('MCX', '')
+    },
+
+    valueSize(): string {
+      if (!this.amount) {
+        return ''
+      }
+
+      const value = this.amount.split('.')[0].length
+
+      switch (true) {
+        case value < 4:
+          return 'text-5xl md:text-7xl'
+        case value < 7:
+          return 'text-4xl md:text-6xl'
+        case value < 8:
+          return 'text-4xl md:text-5xl'
+        default:
+          return 'text-3xl md:text-4xl'
+      }
+    },
+
     qrValue(): string {
       let url = `https://pay.multicash.io/?id=${this.$route.query.id}&address=${this.$route.query.address}&tag=${this.$route.query.tag}&amount=${this.$route.query.amount}`
 
@@ -88,19 +128,23 @@ export default Vue.extend({
 
 <style scoped>
 .pay-link-panel {
-  @apply w-full md:w-1/2 max-w-lg rounded-2xl overflow-hidden shadow-2xl text-gray-800 text-center;
+  @apply w-full md:w-1/2 max-w-lg shadow-2xl text-gray-800 text-center;
 }
 
 .details {
-  @apply p-4 md:p-8 bg-white dark:bg-gray-800;
+  @apply p-4 md:p-8 bg-white dark:bg-gray-800 rounded-t-2xl;
 }
 
 .image {
-  @apply flex justify-center mb-2;
+  @apply bg-white rounded-full hidden p-2 flex justify-center mb-2 transform -translate-y-16;
 }
 
 .image svg {
   @apply w-auto h-0 md:h-16 fill-current text-gray-300 dark:text-gray-500;
+}
+
+.title {
+  @apply text-blue-600 dark:text-blue-400 font-medium text-xs tracking-widest uppercase;
 }
 
 .tag {
@@ -111,7 +155,8 @@ export default Vue.extend({
   @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-500;
 }
 
-.address {
+.address,
+.label {
   @apply -mt-0.5 leading-5 text-xs md:text-base font-medium text-gray-400 dark:text-gray-500 truncate;
 }
 
@@ -120,7 +165,7 @@ export default Vue.extend({
 }
 
 .amount .value {
-  @apply text-4xl md:text-6xl text-gray-800 dark:text-gray-200 font-extrabold;
+  @apply text-gray-800 dark:text-gray-200 font-extrabold;
 }
 
 .amount .currency {
@@ -128,10 +173,12 @@ export default Vue.extend({
 }
 
 .qr-details {
-  @apply p-4 md:p-8 bg-gradient-to-br from-gray-100 to-gray-300 flex dark:from-gray-700 dark:to-gray-800 flex justify-center;
+  @apply p-4 bg-gradient-to-br from-gray-100 to-gray-300 flex dark:from-gray-700 dark:to-gray-800 flex justify-center rounded-b-2xl;
 }
 
 .qr {
+  width: 200px;
+  height: 200px;
   @apply rounded-xl;
 }
 </style>

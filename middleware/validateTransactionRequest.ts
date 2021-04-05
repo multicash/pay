@@ -15,7 +15,12 @@ const schema = Joi.object({
     .regex(/^@[a-zA-Z0-9]+$/)
     .required(),
 
-  amount: Joi.number().precision(8).positive().min(1).max(80000000).required(),
+  amount: Joi.number()
+    .precision(8)
+    .positive()
+    .min(0.01)
+    .max(80000000)
+    .required(),
 
   label: Joi.string().min(1).max(30).optional(),
 })
