@@ -8,8 +8,17 @@
         </div>
         <div>
           <ul class="menu-links">
-            <li><a>Help me</a></li>
-            <li><a>Get Started with MultiCash</a></li>
+            <li>
+              <nuxt-link to="/help-me">Help me</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link to="/get-started-with-multicash"
+                >Get Started with MultiCash
+              </nuxt-link>
+            </li>
+            <li class="hidden sm:inline-flex">
+              <nuxt-link to="/generate">Generate</nuxt-link>
+            </li>
           </ul>
         </div>
       </Container>
@@ -26,19 +35,19 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  @apply min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white;
+  @apply h-full md:min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white;
 }
 
 body {
-  @apply min-h-screen;
+  @apply h-full md:min-h-screen;
 }
 
 #__nuxt {
-  @apply min-h-screen;
+  @apply h-full md:min-h-screen;
 }
 
 #__layout {
-  @apply min-h-screen;
+  @apply h-full md:min-h-screen;
 }
 
 *,
@@ -53,7 +62,7 @@ p {
 }
 
 .layout {
-  @apply min-h-screen bg-colors flex flex-col;
+  @apply h-full md:min-h-screen bg-colors flex flex-col;
 }
 
 .header {
