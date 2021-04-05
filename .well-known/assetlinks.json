@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.multicash",
+      "sha256_cert_fingerprints": [
+        "60:54:F6:ED:0B:D1:38:E2:FA:C4:A3:34:1F:94:65:11:35:B0:97:23:BC:D9:E4:F5:4E:94:39:BB:23:98:F5:FC"
+      ]
+    }
+  }
+]
