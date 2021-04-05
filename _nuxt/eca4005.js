@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{218:function(t,e,n){"use strict";n.r(e);var l=n(1).a.extend({}),r=n(16),component=Object(r.a)(l,(function(){var t=this,e=t.$createElement;return(t._self._c||e)("div",[t._v("Get started with MultiCash")])}),[],!1,null,null,null);e.default=component.exports}}]);
