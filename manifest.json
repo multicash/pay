@@ -1,0 +1,25 @@
+{
+  "short_name": "MCXP",
+  "name": "MultiCash Pay",
+  "icons": [
+    {
+      "src": "https://pay.multicash.io/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://pay.multicash.io/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.multicash"
+    }
+  ],
+  "display": "standalone",
+  "start_url": "/?utm_source=androidappinstallbanner"
+}
