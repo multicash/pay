@@ -1,10 +1,6 @@
 module.exports = {
   darkMode: 'media',
   theme: {
-    backgroundColor: (theme) => ({
-      ...theme('colors'),
-      primary: '#8edc34',
-    }),
     backgroundImage: () => ({
       none: 'none',
       'gradient-to-t': 'linear-gradient(to top, var(--tw-gradient-stops))',
