@@ -1,29 +1,27 @@
 <template>
   <div class="layout">
-    <Block>
-      <Container class="header">
-        <div class="logo-container">
-          <Logo class="logo" flat inverted />
-          <h1 class="logo-pay">Pay</h1>
-        </div>
-        <div>
-          <ul class="menu-links">
-            <li>
-              <nuxt-link to="/help-me">Help me</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link to="/get-started-with-multicash"
-                >Get Started with MultiCash
-              </nuxt-link>
-            </li>
-            <li class="hidden sm:inline-flex">
-              <nuxt-link to="/generate">Generate</nuxt-link>
-            </li>
-          </ul>
-        </div>
-      </Container>
+    <Container class="header">
+      <div class="logo-container">
+        <Logo class="logo" flat />
+        <h1 class="logo-pay">Pay</h1>
+      </div>
+      <div>
+        <ul class="menu-links">
+          <li>
+            <nuxt-link to="/help-me">Help me</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="/get-started-with-multicash">Get Started </nuxt-link>
+          </li>
+          <li class="hidden sm:inline-flex button">
+            <nuxt-link to="/generate">Generate</nuxt-link>
+          </li>
+        </ul>
+      </div>
+    </Container>
+    <Block class="flex-1">
+      <Nuxt class="flex-1" />
     </Block>
-    <Nuxt class="flex-1" />
     <div class="footer">© 2021 MultiCash. All Rights Reserved</div>
   </div>
 </template>
@@ -62,11 +60,13 @@ p {
 }
 
 .layout {
-  @apply h-full md:min-h-screen bg-colors flex flex-col;
+  @apply h-full md:min-h-screen flex flex-col;
+
+  /* bg-colors */
 }
 
 .header {
-  @apply flex justify-center md:justify-between items-center flex-col md:flex-row;
+  @apply flex justify-center md:justify-between items-center flex-col md:flex-row w-full px-10;
 }
 
 .logo-container {
@@ -74,11 +74,11 @@ p {
 }
 
 .logo {
-  @apply w-auto h-5 md:h-8;
+  @apply w-auto h-4 md:h-5;
 }
 
 .logo-pay {
-  @apply font-extrabold text-4xl md:text-6xl text-white ml-0 italic;
+  @apply font-extrabold text-2xl md:text-4xl text-gray-900 ml-0 italic;
 }
 
 .menu-links {
@@ -86,10 +86,19 @@ p {
 }
 
 .menu-links li a {
-  @apply p-3 pt-4 md:p-4 flex items-center justify-center md:text-lg font-medium text-white hover:bg-white hover:bg-opacity-10 cursor-pointer;
+  @apply p-3 pt-4 md:p-4 flex items-center justify-center font-medium text-gray-900 hover:bg-black hover:bg-opacity-10 cursor-pointer;
 }
 
 .footer {
-  @apply py-2 md:py-4 flex items-end justify-center text-white text-sm;
+  @apply bg-colors py-2 md:py-4 flex items-end justify-center text-white text-sm;
 }
 </style>
+
+<script>
+import Block from '../components/Block'
+import Container from '../components/Container'
+
+export default {
+  components: { Container, Block },
+}
+</script>

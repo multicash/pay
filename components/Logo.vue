@@ -143,7 +143,7 @@ export default {
 }
 
 .multicash-logo-text {
-  @apply fill-current text-gray-500 dark:text-gray-50;
+  @apply fill-current text-gray-900 dark:text-gray-50;
 }
 
 .multicash-logo-inverted .multicash-logo-text {
@@ -151,7 +151,7 @@ export default {
 }
 
 .multicash-logo-flat {
-  @apply fill-current text-gray-500 dark:text-gray-50;
+  @apply fill-current text-gray-900 dark:text-gray-50;
 }
 
 .multicash-logo-inverted .multicash-logo-flat {

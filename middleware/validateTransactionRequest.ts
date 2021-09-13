@@ -2,18 +2,18 @@ import { Context } from '@nuxt/types/app'
 
 const Joi = require('joi')
 
+// const addressRegex = /^[a-zA-Z0-9]{35}$/
+// const tagRegex = /^@[a-zA-Z0-9]+$/
+
 const schema = Joi.object({
   id: Joi.string().uuid().required(),
 
-  address: Joi.string()
-    .required()
-    .regex(/^[a-zA-Z0-9]{35}$/),
+  address: Joi.string().length(35),
 
-  tag: Joi.string()
-    .min(4)
-    .max(20)
-    .regex(/^@[a-zA-Z0-9]+$/)
-    .required(),
+  tag: Joi.string().when('address', {
+    not: Joi.exist(),
+    then: Joi.string().min(4).max(20).required(),
+  }),
 
   amount: Joi.number()
     .precision(8)

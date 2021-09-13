@@ -3,16 +3,6 @@
     <div class="flex justify-center">
       <div class="pay-link-panel">
         <div class="details">
-          <div class="image">
-            <svg viewBox="0 0 512 512">
-              <path
-                d="M502.74 153.142a14.998 14.998 0 00-16.347 3.251L467 175.787l-19.394-19.394c-5.857-5.858-15.355-5.858-21.213 0L407 175.787l-15-15V75c0-41.351-33.638-74.992-74.993-75H77C35.533 0 0 33.522 0 75v422a15 15 0 0025.259 10.943l21.404-20.067 19.73 19.73c5.857 5.858 15.355 5.858 21.213 0L107 488.213l19.394 19.394c5.857 5.858 15.355 5.858 21.213 0L167 488.213l19.394 19.394c5.857 5.858 15.355 5.858 21.213 0L227 488.213l19.394 19.394a14.996 14.996 0 0010.61 4.394c8.24-.001 14.997-6.686 14.997-15V332h165c41.355 0 75-33.645 75-75v-90a15.002 15.002 0 00-9.261-13.858zM242 460.787l-4.394-4.394c-5.857-5.858-15.355-5.858-21.213 0L197 475.787l-19.394-19.394c-5.857-5.858-15.355-5.858-21.213 0L137 475.787l-19.394-19.394c-5.857-5.858-15.355-5.858-21.213 0L77 475.787l-19.394-19.394c-5.723-5.724-14.958-5.874-20.866-.336L30 462.376V75c0-24.393 21.523-45 47-45h180.04C247.603 42.544 242 58.129 242 75zM272 75c0-24.813 20.184-45 45-45 24.813 0 45 20.187 45 45v182c0 16.871 5.603 32.456 15.041 45H272V75zm210 182c0 24.813-20.187 45-45 45s-45-20.187-45-45v-53.787l4.394 4.394c5.857 5.858 15.355 5.858 21.213 0L437 188.213l19.394 19.394c5.857 5.858 15.355 5.858 21.213 0l4.394-4.394V257z"
-              />
-              <path
-                d="M197 302H77c-8.284 0-15 6.716-15 15s6.716 15 15 15h120c8.284 0 15-6.716 15-15s-6.716-15-15-15zM197 362H77c-8.284 0-15 6.716-15 15s6.716 15 15 15h120c8.284 0 15-6.716 15-15s-6.716-15-15-15zM152 212h-30c-8.271 0-15-6.729-15-15 0-8.284-6.716-15-15-15s-15 6.716-15 15c0 24.813 20.187 45 45 45v15c0 8.284 6.716 15 15 15s15-6.716 15-15v-15c24.813 0 45-20.187 45-45s-20.187-45-45-45h-30c-8.271 0-15-6.729-15-15s6.729-15 15-15h30c8.271 0 15 6.729 15 15 0 8.284 6.716 15 15 15s15-6.716 15-15c0-24.813-20.187-45-45-45V77c0-8.284-6.716-15-15-15s-15 6.716-15 15v15c-24.813 0-45 20.187-45 45s20.187 45 45 45h30c8.271 0 15 6.729 15 15s-6.729 15-15 15z"
-              />
-            </svg>
-          </div>
           <div class="title">Pay</div>
           <div class="tag">
             <span>{{ tag }}</span>
@@ -102,10 +92,10 @@ export default Vue.extend({
     },
 
     qrValue(): string {
-      let url = `https://pay.multicash.io/?id=${this.$route.query.id}&address=${this.$route.query.address}&tag=${this.$route.query.tag}&amount=${this.$route.query.amount}`
+      let url = `https://pay.multicash.io/?id=${this.id}&address=${this.address}&tag=${this.tag}&amount=${this.amount}`
 
-      if (this.$route.query.label !== '' && this.$route.query.label !== null) {
-        url += '&label=' + this.$route.query.label
+      if (this.label !== '' && this.label !== null) {
+        url += '&label=' + this.label
       }
 
       return encodeURI(url)
@@ -118,21 +108,35 @@ export default Vue.extend({
     this.tag = this.$route.query.tag as string
     this.amount = this.$route.query.amount as string
     this.label = this.$route.query.label as string
+
+    if (!this.address) {
+      this.getAddressFromTag(this.tag)
+    }
+  },
+
+  methods: {
+    getAddressFromTag(tag: string): void {
+      fetch(`https://staging.tags.multicash.io/api/mainnet/tags/${tag}`, {
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((address) => {
+          this.address = address.address
+        })
+    },
   },
 })
 </script>
 
 <style scoped>
 .pay-link-panel {
-  @apply w-full md:w-1/2 max-w-lg shadow-2xl text-gray-800 text-center;
+  @apply w-full md:w-1/2 max-w-lg shadow-lg rounded-2xl text-gray-800 text-center;
 }
 
 .details {
-  @apply p-4 md:p-8 bg-white dark:bg-gray-800 rounded-t-2xl;
-}
-
-.image {
-  @apply bg-white rounded-full hidden p-2 flex justify-center mb-2 transform -translate-y-16;
+  @apply p-4 md:p-8 bg-gray-50 dark:bg-gray-800 rounded-t-2xl;
 }
 
 .image svg {
