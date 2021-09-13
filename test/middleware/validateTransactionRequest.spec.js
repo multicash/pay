@@ -190,7 +190,7 @@ describe('Transaction request middleware validates', () => {
     expect(context.redirect).toHaveBeenCalled()
   })
 
-  test('Invalid id because its missing', () => {
+  test('Invalid id because is missing', () => {
     const context = {
       redirect: jest.fn(),
       route: {

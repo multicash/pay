@@ -26,6 +26,15 @@
   </div>
 </template>
 
+<script>
+import Block from '../components/Block'
+import Container from '../components/Container'
+
+export default {
+  components: { Container, Block },
+}
+</script>
+
 <style>
 html {
   -ms-text-size-adjust: 100%;
@@ -93,12 +102,3 @@ p {
   @apply bg-colors py-2 md:py-4 flex items-end justify-center text-white text-sm;
 }
 </style>
-
-<script>
-import Block from '../components/Block'
-import Container from '../components/Container'
-
-export default {
-  components: { Container, Block },
-}
-</script>
