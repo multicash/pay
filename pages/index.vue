@@ -20,6 +20,7 @@
             </div>
           </template>
         </div>
+        <div class="colors-divider" />
         <div class="qr-details">
           <vue-qrcode
             :value="qrValue"
@@ -132,7 +133,7 @@ export default Vue.extend({
 
 <style scoped>
 .pay-link-panel {
-  @apply w-full md:w-1/2 max-w-lg shadow-lg rounded-2xl text-gray-800 text-center;
+  @apply w-full md:w-1/2 max-w-lg shadow-lg rounded-2xl text-gray-800 text-center ring-1 ring-gray-100 dark:ring-gray-700;
 }
 
 .details {
@@ -170,6 +171,10 @@ export default Vue.extend({
 
 .amount .currency {
   @apply text-xl md:text-4xl text-gray-600 dark:text-gray-500 font-black;
+}
+
+.colors-divider {
+  @apply bg-colors h-2 w-full;
 }
 
 .qr-details {

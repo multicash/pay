@@ -8,9 +8,27 @@ const tagRegex = /^@[a-zA-Z0-9]+$/
 const schema = Joi.object({
   id: Joi.string().uuid().required(),
 
-  address: Joi.string().length(35).regex(addressRegex),
+  address: Joi.string()
+    .length(35)
+    .custom((value: string) => {
+      if (!addressRegex.test(value)) {
+        throw new Error("given address doesn't conform format")
+      }
 
-  tag: Joi.string().min(4).max(20).regex(tagRegex).required(),
+      return value
+    }),
+
+  tag: Joi.string()
+    .min(4)
+    .max(20)
+    .required()
+    .custom((value: string) => {
+      if (!tagRegex.test(value)) {
+        throw new Error("given tag doesn't conform format")
+      }
+
+      return value
+    }),
 
   amount: Joi.number()
     .precision(8)
