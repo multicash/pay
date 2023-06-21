@@ -26,7 +26,7 @@
     "@chenfengyuan/vue-qrcode": "^1.0.2",
     "core-js": "^3.9.1",
     "joi": "^17.4.0",
-    "nuxt": "^2.15.4",
+    "nuxt": "^3.4.3",
     "qrcode": "^1.4.4"
   },
   "devDependencies": {
